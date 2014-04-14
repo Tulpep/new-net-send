@@ -7,8 +7,8 @@
     <ProjectGuid>{D3B5DD75-F6CF-4538-B24E-A32E4F58419E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tulpep.CentralNetSend.CommandLine</RootNamespace>
-    <AssemblyName>Tulpep.CentralNetSend.CommandLine</AssemblyName>
+    <RootNamespace>Tulpep.CentralNetSend.Net</RootNamespace>
+    <AssemblyName>Tulpep.CentralNetSend.Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
