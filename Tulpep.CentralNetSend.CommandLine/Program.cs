@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 
 namespace CentralNetSend
 {
@@ -10,12 +11,19 @@ namespace CentralNetSend
         {
             if(args.Length != 0)
             {
+
                 if(args[0].ToLower() == "send" && args.Count() == 3)
                 {
+
                     string computerName = args[1];
                     string message = args[2];
 
-                    //MAndar mensaje al servidor
+                    string urlOfServer = "http://localhost:22876";
+                    var httpclient = new HttpClient(new HttpClientHandler {UseDefaultCredentials = true}) { BaseAddress = new Uri(urlOfServer) };
+
+                    var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
+                    Console.WriteLine(response.StatusCode);
+
                 }
                 else
                 {
