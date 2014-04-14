@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Web.Http;
 
 namespace Tulpep.CentralNetSend.API.Controllers
@@ -11,10 +10,35 @@ namespace Tulpep.CentralNetSend.API.Controllers
     [AllowAnonymous]
     public class MessageController : ApiController
     {
+        [DllImport("kernel32.dll", SetLastError=true)]
+        public static extern int Wow64DisableWow64FsRedirection(ref IntPtr ptr);
+
         public HttpResponseMessage PostMessage(string computerName, string message)
         {
-            File.AppendAllText(@"C:\Users\Ricardo\Dev\Newnetsend\hola.txt", computerName + " " + message + Environment.NewLine);
-            return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
+            IntPtr val = new IntPtr();
+            Wow64DisableWow64FsRedirection(ref val);
+
+            var process = new Process();
+            process.StartInfo.FileName = "msg.exe";
+            process.StartInfo.Arguments = "* /server:" + computerName + " " +  message;
+
+            // set up output redirection
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false;
+            process.Start();
+            process.WaitForExit();
+            string errors = process.StandardOutput.ReadToEnd();
+
+            if(errors != null)
+            {
+                return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
+            }
+            else
+            {
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
+            }
         }
     }
 }
