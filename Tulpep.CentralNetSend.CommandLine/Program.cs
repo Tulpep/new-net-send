@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -18,11 +19,28 @@ namespace CentralNetSend
                     string computerName = args[1];
                     string message = args[2];
 
-                    string urlOfServer = "http://localhost:56890";
-                    var httpclient = new HttpClient(new HttpClientHandler {UseDefaultCredentials = true}) { BaseAddress = new Uri(urlOfServer) };
 
-                    var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
-                    Console.WriteLine(response.StatusCode);
+                    using(RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+                    {
+
+                    }
+                    
+                    string urlOfServer = "http://localhost:56890";
+
+                    try
+                    {
+                        var httpclient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }) { BaseAddress = new Uri(urlOfServer) };
+
+                        var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
+                        Console.WriteLine(response.StatusCode);
+
+                    }
+                    catch ()
+                    {
+                        Console.WriteLine("Cannot contact Central Net Service by Tulpep at " + urlOfServer);
+                    }
+
+
 
                 }
                 else
