@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Web.Http;
 
-namespace Tulpep.CentralNetSend.API.Controllers
+namespace Tulpep.CentralNetSend.WebApiService
 {
     [AllowAnonymous]
     public class MessageController : ApiController

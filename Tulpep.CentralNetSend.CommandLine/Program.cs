@@ -18,7 +18,7 @@ namespace CentralNetSend
                     string computerName = args[1];
                     string message = args[2];
 
-                    string urlOfServer = "http://localhost:22876";
+                    string urlOfServer = "http://localhost:56890";
                     var httpclient = new HttpClient(new HttpClientHandler {UseDefaultCredentials = true}) { BaseAddress = new Uri(urlOfServer) };
 
                     var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
