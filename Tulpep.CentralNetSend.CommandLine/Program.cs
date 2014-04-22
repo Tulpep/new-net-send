@@ -18,24 +18,28 @@ namespace CentralNetSend
 
                     string computerName = args[1];
                     string message = args[2];
-
+                    string urlOfServer;
 
                     using(RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
                     {
+                        using(RegistryKey centralNetSendKey = hklm.OpenSubKey(@"SOFTWARE\Tulpep\CentralNetSend")) 
+	                    {
+		                    urlOfServer = centralNetSendKey.GetValue("APIServer").ToString();
+	                    } 
 
                     }
                     
-                    string urlOfServer = "http://localhost:56890";
+                
 
                     try
                     {
                         var httpclient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }) { BaseAddress = new Uri(urlOfServer) };
 
                         var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
-                        Console.WriteLine(response.StatusCode);
+                        
 
                     }
-                    catch ()
+                    catch 
                     {
                         Console.WriteLine("Cannot contact Central Net Service by Tulpep at " + urlOfServer);
                     }
