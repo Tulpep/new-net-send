@@ -39,14 +39,13 @@ namespace Tulpep.CentralNetSend.WebApiService
 
             if(String.IsNullOrWhiteSpace(errors))
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
-                return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
-
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
+                return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
             }
             else
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
-                return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
+                return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
             }
         }
     }
