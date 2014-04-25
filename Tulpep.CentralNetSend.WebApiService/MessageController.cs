@@ -4,6 +4,8 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Web.Http;
+using System.Text;
+using System.IO;
 
 namespace Tulpep.CentralNetSend.WebApiService
 {
@@ -16,8 +18,8 @@ namespace Tulpep.CentralNetSend.WebApiService
         public HttpResponseMessage PostMessage(string computerName, string message)
         {
             IntPtr val = new IntPtr();
-            Wow64DisableWow64FsRedirection(ref val);
 
+            Wow64DisableWow64FsRedirection(ref val);
             var process = new Process();
             process.StartInfo.FileName = "msg.exe";
             process.StartInfo.Arguments = "* /server:" + computerName + " " +  message;
@@ -31,12 +33,17 @@ namespace Tulpep.CentralNetSend.WebApiService
             process.WaitForExit();
             string errors = process.StandardOutput.ReadToEnd();
 
+
+            string pathOfLog = (Environment.SystemDirectory) + @"\Log-Central-Message.txt";
             if(errors != null)
             {
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK");
                 return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
+
             }
             else
             {
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
             }
         }
