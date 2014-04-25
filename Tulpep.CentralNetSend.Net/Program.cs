@@ -20,13 +20,22 @@ namespace Tulpep.CentralNetSend.Net
                     string message = args[2];
                     string urlOfServer;
 
-                    using(RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
-                    {
-                        using(RegistryKey centralNetSendKey = hklm.OpenSubKey(@"SOFTWARE\Tulpep\CentralNetSend")) 
-	                    {
-		                    urlOfServer = centralNetSendKey.GetValue("APIServer").ToString();
-	                    } 
 
+                    try
+                    {
+                        using (RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+                        {
+                            using (RegistryKey centralNetSendKey = hklm.OpenSubKey(@"SOFTWARE\Tulpep\CentralNetSend"))
+                            {
+                                urlOfServer = centralNetSendKey.GetValue("APIServer").ToString();
+                            }
+
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine(@"Check that HKEY_LOCAL_MACHINE\SOFTWARE\Tulpep\CentralNetSend\APIServer exists");
+                        return 1;
                     }
                     
                 
