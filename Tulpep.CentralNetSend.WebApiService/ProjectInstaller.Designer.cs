@@ -38,8 +38,8 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "This service creates an API to receive message across a secure version of Net Sen" +
-    "d. Created by Tulpep.";
+            this.serviceInstaller1.Description = "Creates an API to receive message across a secure version of Net Send. Created by" +
+    " Tulpep.";
             this.serviceInstaller1.DisplayName = "Tulpep Central Net Send";
             this.serviceInstaller1.ServiceName = "CentralNetSend";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;

@@ -1,5 +1,4 @@
-﻿using Microsoft.Owin.Hosting;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,8 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.SelfHost;
 
 namespace Tulpep.CentralNetSend.WebApiService
 {
@@ -32,7 +33,15 @@ namespace Tulpep.CentralNetSend.WebApiService
 
             }
 
-            WebApp.Start<Startup>(url: urlOfServer);
+            var config = new HttpSelfHostConfiguration(urlOfServer);
+
+            config.Routes.MapHttpRoute(
+                "API Default", "api/{controller}/{id}",
+                new { id = RouteParameter.Optional });
+
+            HttpSelfHostServer server = new HttpSelfHostServer(config);
+            server.OpenAsync().Wait();
+
         }
 
         protected override void OnStop()

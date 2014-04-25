@@ -17,6 +17,9 @@ namespace Tulpep.CentralNetSend.WebApiService
 
         public HttpResponseMessage PostMessage(string computerName, string message)
         {
+
+            string pathOfLog = (Environment.SystemDirectory) + @"\Log-Central-Message.txt";
+
             IntPtr val = new IntPtr();
 
             Wow64DisableWow64FsRedirection(ref val);
@@ -34,16 +37,15 @@ namespace Tulpep.CentralNetSend.WebApiService
             string errors = process.StandardOutput.ReadToEnd();
 
 
-            string pathOfLog = (Environment.SystemDirectory) + @"\Log-Central-Message.txt";
-            if(errors != null)
+            if(String.IsNullOrWhiteSpace(errors))
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
 
             }
             else
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
             }
         }

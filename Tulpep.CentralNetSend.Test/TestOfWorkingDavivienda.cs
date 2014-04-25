@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CentralNetSend;
+using Tulpep.CentralNetSend.Net;
 
 namespace Tulpep.CentralNetSend.Test
 {

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 
-namespace CentralNetSend
+namespace Tulpep.CentralNetSend.Net
 {
     public static class Program
     {
@@ -33,9 +33,13 @@ namespace CentralNetSend
 
                     try
                     {
-                        var httpclient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }) { BaseAddress = new Uri(urlOfServer) };
+                        var httpclient = new System.Net.Http.HttpClient(new HttpClientHandler { UseDefaultCredentials = true, UseProxy = false }) { BaseAddress = new Uri(urlOfServer) };
 
                         var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
+                        if(response.StatusCode != System.Net.HttpStatusCode.OK)
+                        {
+                            Console.WriteLine("Failed. " + response.Content.ReadAsStringAsync().Result);
+                        }
                     }
                     catch 
                     {

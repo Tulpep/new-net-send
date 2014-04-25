@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CentralNetSend")]
+[assembly: AssemblyTitle("Tulpep.CentralNetSend.Net")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CentralNetSend")]
+[assembly: AssemblyProduct("Tulpep.CentralNetSend.Net")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e744adcb-0ec2-4294-8eda-260bcdd6f17f")]
+[assembly: Guid("3f83c14d-9f2b-495f-83ba-71311d871d8b")]
 
 // Version information for an assembly consists of the following four values:
 //
