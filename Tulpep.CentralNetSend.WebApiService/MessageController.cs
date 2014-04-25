@@ -37,13 +37,13 @@ namespace Tulpep.CentralNetSend.WebApiService
             string pathOfLog = (Environment.SystemDirectory) + @"\Log-Central-Message.txt";
             if(errors != null)
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK");
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
 
             }
             else
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors);
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
             }
         }
