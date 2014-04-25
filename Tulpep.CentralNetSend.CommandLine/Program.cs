@@ -6,9 +6,9 @@ using System.Net.Http;
 
 namespace CentralNetSend
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static int Main(string[] args)
         {
             if(args.Length != 0)
             {
@@ -36,12 +36,11 @@ namespace CentralNetSend
                         var httpclient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }) { BaseAddress = new Uri(urlOfServer) };
 
                         var response = httpclient.PostAsJsonAsync("/api/Message?computerName=" + computerName + "&message=" + message, "").Result;
-                        
-
                     }
                     catch 
                     {
                         Console.WriteLine("Cannot contact Central Net Service by Tulpep at " + urlOfServer);
+                        return 1;
                     }
 
 
@@ -72,6 +71,8 @@ namespace CentralNetSend
                     process.WaitForExit();
                 }
             }
+
+            return 0;
         }
 
         static void ShowInfoOfNet(object sender, DataReceivedEventArgs e)
