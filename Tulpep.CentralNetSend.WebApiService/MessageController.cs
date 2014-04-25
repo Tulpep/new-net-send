@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Tulpep.CentralNetSend.WebApiService
 {
-    [AllowAnonymous]
+    [Authorize]
     public class MessageController : ApiController
     {
         [DllImport("kernel32.dll", SetLastError=true)]
@@ -34,17 +34,17 @@ namespace Tulpep.CentralNetSend.WebApiService
             process.StartInfo.UseShellExecute = false;
             process.Start();
             process.WaitForExit();
-            string errors = process.StandardOutput.ReadToEnd();
+            string errors = process.StandardError.ReadToEnd();
 
 
             if(String.IsNullOrWhiteSpace(errors))
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + User.Identity.Name + "\t" + computerName + "\t" + message + "\t OK" + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.OK, "Sent");
             }
             else
             {
-                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
+                File.AppendAllText(pathOfLog, DateTime.Now + "\t" + User.Identity.Name + "\t" + computerName + "\t" + message + "\t" + errors + Environment.NewLine);
                 return Request.CreateResponse<string>(HttpStatusCode.BadRequest, errors);
             }
         }

@@ -33,7 +33,7 @@ namespace Tulpep.CentralNetSend.WebApiService
 
             }
 
-            var config = new HttpSelfHostConfiguration(urlOfServer);
+            var config = new NtlmSelfHostConfiguration(urlOfServer);
 
             config.Routes.MapHttpRoute(
                 "API Default", "api/{controller}/{id}",
