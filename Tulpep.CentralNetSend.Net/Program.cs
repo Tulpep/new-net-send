@@ -62,7 +62,7 @@ namespace Tulpep.CentralNetSend.Net
                 else
                 {
                     var process = new Process();
-                    process.StartInfo.FileName = "net.exe";
+                    process.StartInfo.FileName = "netoriginal.exe";
                     process.StartInfo.Arguments = String.Join(" ", args);
 
                     // set up output redirection
