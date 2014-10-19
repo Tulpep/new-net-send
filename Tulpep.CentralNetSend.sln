@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tulpep.CentralNetSend.WebApiService", "Tulpep.CentralNetSend.WebApiService\Tulpep.CentralNetSend.WebApiService.csproj", "{ED5457A1-372D-4D7C-B71B-7301EF1A677B}"
 EndProject
@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{11ED42
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tulpep.CentralNetSend.Test", "Tulpep.CentralNetSend.Test\Tulpep.CentralNetSend.Test.csproj", "{09286ED0-C670-4E01-8CAD-7236AB6985D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tulpep.CentralNetSend.Net", "Tulpep.CentralNetSend.Net\Tulpep.CentralNetSend.Net.csproj", "{BE97BC35-CEC4-479E-BCC3-04353E13A5B6}"
 EndProject
@@ -26,10 +24,6 @@ Global
 		{ED5457A1-372D-4D7C-B71B-7301EF1A677B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5457A1-372D-4D7C-B71B-7301EF1A677B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5457A1-372D-4D7C-B71B-7301EF1A677B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09286ED0-C670-4E01-8CAD-7236AB6985D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09286ED0-C670-4E01-8CAD-7236AB6985D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09286ED0-C670-4E01-8CAD-7236AB6985D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09286ED0-C670-4E01-8CAD-7236AB6985D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE97BC35-CEC4-479E-BCC3-04353E13A5B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE97BC35-CEC4-479E-BCC3-04353E13A5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE97BC35-CEC4-479E-BCC3-04353E13A5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
